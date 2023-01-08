@@ -51,9 +51,13 @@ function createSolarSystem(sunLocation = new Vector3(0, 0, 0)) {
 
     // TODO: Projects separate from github?
     // TODO: "Adobe" planet for resume?
-    // TODO: Planets have orbit path/ring visible.
 
-    return { sun: sun, planets: planets, allBodies: [sun].concat(planets) };
+    return {
+        sun: sun,
+        planets: planets,
+        allBodies: [sun].concat(planets),
+        orbits: planets.map(planet => planet.orbitPath)
+    };
 }
 
 // TODO: Refactor much of this into its own class...
@@ -89,6 +93,7 @@ function main() {
     system.planets.forEach(planet => {
         scene.add(planet.orbitObj);
     });
+    system.orbits.forEach(orbit => { scene.add(orbit); });
 
     const cameraSettings = new CameraSettings(
         45,
@@ -132,8 +137,10 @@ function main() {
         if (clickedObject != null) {
             if (clickedObject instanceof Planet) {
                 camera.track(clickedObject);
+                system.orbits.forEach(orbit => { orbit.visible = false; });
             } else {
                 camera.reset();
+                system.orbits.forEach(orbit => { orbit.visible = true; });
             }
         }
     }

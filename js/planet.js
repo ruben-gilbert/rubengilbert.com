@@ -1,4 +1,4 @@
-import { Mesh, MeshStandardMaterial, Object3D, SphereGeometry } from 'three';
+import { DoubleSide, Mesh, MeshBasicMaterial, MeshStandardMaterial, Object3D, RingGeometry, SphereGeometry } from 'three';
 
 class Planet extends Mesh {
     constructor(radius, texture, settings) {
@@ -15,9 +15,17 @@ class Planet extends Mesh {
         const z = Math.sin(randAngle) * this.settings.orbitRadius;
         this.position.set(x, 0, z);
 
+        // TODO: Support orbits on altered planes...?  (i.e. rotate the orbitObj X oy Z)
         this.orbitObj = new Object3D();
         this.orbitObj.position.set(...this.settings.orbitOrigin);
         this.orbitObj.add(this);
+
+        const orbitGeometry = new RingGeometry(this.settings.orbitRadius - 0.5, this.settings.orbitRadius, 70);
+        const orbitMaterial = new MeshBasicMaterial({ color: 0x14186 });
+        orbitMaterial.side = DoubleSide;
+        this.orbitPath = new Mesh(orbitGeometry, orbitMaterial);
+        this.orbitPath.quaternion.copy(this.orbitObj.quaternion);
+        this.orbitPath.rotateX(Math.PI / 2);    // Rings (BufferGeometry) are 90 degrees rotated from Object3D.
     }
 
     update() {
