@@ -35,17 +35,17 @@ function createSolarSystem(sunLocation = new Vector3(0, 0, 0)) {
     const sun = new Sun(15, sunTexture, sunSettings);
 
     // About Me
-    const aboutSettings = new PlanetSettings(new Vector3(20, 0, 0), sunLocation, 0.003, 0.03);
+    const aboutSettings = new PlanetSettings(20, sunLocation, 0.003, 0.03);
     const aboutPlanet = new Planet(3, aboutTexture, aboutSettings);
     planets.push(aboutPlanet);
 
     // LinkedIn
-    const linkedInSettings = new PlanetSettings(new Vector3(30, 0, 0), sunLocation, 0.002, 0.02);
+    const linkedInSettings = new PlanetSettings(30, sunLocation, 0.002, 0.02);
     const linkedInPlanet = new Planet(5, linkedInTexture, linkedInSettings);
     planets.push(linkedInPlanet);
 
     // Github
-    const githubSettings = new PlanetSettings(new Vector3(50, 0, 0), sunLocation, 0.001, 0.01);
+    const githubSettings = new PlanetSettings(50, sunLocation, 0.001, 0.01);
     const githubPlanet = new Planet(5.5, githubTexture, githubSettings);
     planets.push(githubPlanet);
 

@@ -1,7 +1,7 @@
 class PlanetSettings {
-    constructor(initialLocation, orbitLocation, orbitSpeed, rotationSpeed, widthSegments = 30, heightSegments = 30) {
-        this.initialLocation = initialLocation;
-        this.orbitLocation = orbitLocation;
+    constructor(orbitRadius, orbitOrigin, orbitSpeed, rotationSpeed, widthSegments = 30, heightSegments = 30) {
+        this.orbitRadius = orbitRadius;
+        this.orbitOrigin = orbitOrigin;
         this.orbitSpeed = orbitSpeed;
         this.rotationSpeed = rotationSpeed;
         this.widthSegments = widthSegments;
