@@ -77,22 +77,16 @@ function main() {
     // starTexture.minFilter = THREE.NearestFilter;
     // scene.background = starTexture;
 
-    // TODO: Get shadows working (light + meshes to block light (when planets overlap))...
     const lights = [];
     const pointLight = new PointLight(0xFFFFFF, 1.5);
     const ambientLight = new AmbientLight(0xFFFFFF, 0.2);
     lights.push(pointLight);
     lights.push(ambientLight);
-
-    lights.forEach(l => {
-        scene.add(l);
-    });
+    lights.forEach(l => { scene.add(l); });
 
     const system = createSolarSystem();
     scene.add(system.sun);
-    system.planets.forEach(planet => {
-        scene.add(planet.orbitObj);
-    });
+    system.planets.forEach(planet => { scene.add(planet.orbitObj); });
     system.orbits.forEach(orbit => { scene.add(orbit); });
 
     const cameraSettings = new CameraSettings(
@@ -164,9 +158,7 @@ function main() {
             camera.updateProjectionMatrix();
         }
 
-        system.allBodies.forEach(body => {
-            body.update();
-        });
+        system.allBodies.forEach(body => { body.update(); });
 
         camera.update();
 
