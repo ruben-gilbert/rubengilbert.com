@@ -124,16 +124,12 @@ function main() {
         mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
         const clickedObject = checkForMouseIntersection(system.allBodies);
-        // TODO: Only track planets -- resetting comes through UI menu of some kind...
-        // if (clickedObject != null && clickedObject instanceof Planet) {
         if (clickedObject != null) {
-            if (clickedObject instanceof Planet) {
-                camera.track(clickedObject);
-                system.orbits.forEach(orbit => { orbit.visible = false; });
-            } else {
-                camera.reset();
-                system.orbits.forEach(orbit => { orbit.visible = true; });
-            }
+            camera.track(clickedObject);
+            system.orbits.forEach(orbit => { orbit.visible = false; });
+        } else {
+            camera.reset();
+            system.orbits.forEach(orbit => { orbit.visible = true; });
         }
     }
 
