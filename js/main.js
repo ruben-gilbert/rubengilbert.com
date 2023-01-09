@@ -32,21 +32,21 @@ function createSolarSystem(sunLocation = new Vector3(0, 0, 0)) {
     const githubTexture = textureLoader.load('./assets/img/github.png');
 
     // Sun
-    const sunSettings = new SunSettings(sunLocation, 0.001);
+    const sunSettings = new SunSettings("Help", sunLocation, 0.001);
     const sun = new Sun(15, sunTexture, sunSettings);
 
     // About Me
-    const aboutSettings = new PlanetSettings(20, sunLocation, 0.003, 0.03);
+    const aboutSettings = new PlanetSettings("About Me", 20, sunLocation, 0.003, 0.03);
     const aboutPlanet = new Planet(3, aboutTexture, aboutSettings);
     planets.push(aboutPlanet);
 
     // LinkedIn
-    const linkedInSettings = new PlanetSettings(30, sunLocation, 0.002, 0.02);
+    const linkedInSettings = new PlanetSettings("LinkedIn", 30, sunLocation, 0.002, 0.02);
     const linkedInPlanet = new Planet(5, linkedInTexture, linkedInSettings);
     planets.push(linkedInPlanet);
 
     // Github
-    const githubSettings = new PlanetSettings(50, sunLocation, 0.001, 0.01);
+    const githubSettings = new PlanetSettings("GitHub", 50, sunLocation, 0.001, 0.01);
     const githubPlanet = new Planet(5.5, githubTexture, githubSettings);
     planets.push(githubPlanet);
 
@@ -97,6 +97,7 @@ function main() {
         0.03,
     );
     const camera = new TrackingCamera(system.sun.getWorldPosition(new Vector3()), cameraSettings);
+    updateLocationName();
 
     // POST-PROCESSING
 
@@ -109,6 +110,15 @@ function main() {
     composer.addPass(renderPass);
     composer.addPass(outlinePass);
     composer.addPass(fxaaShaderPass);
+
+    function updateLocationName() {
+        const locationDiv = document.getElementsByClassName("locationOverlay")[0];
+        if (camera.currentTrackedObj == null) {
+            locationDiv.innerHTML = "Ruben<br>Gilbert";
+        } else {
+            locationDiv.innerHTML = `${camera.currentTrackedObj.name}`
+        }
+    }
 
     // EVENT HANDLING
 
@@ -131,6 +141,8 @@ function main() {
             camera.reset();
             system.orbits.forEach(orbit => { orbit.visible = true; });
         }
+
+        updateLocationName();
     }
 
     function checkForMouseIntersection(objects) {
