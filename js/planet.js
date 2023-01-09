@@ -6,6 +6,7 @@ class Planet extends Mesh {
         const material = new MeshStandardMaterial({ map: texture });
         super(geometry, material);
 
+        this.name = settings.name;
         this.radius = radius;
         this.texture = texture;
         this.settings = settings;

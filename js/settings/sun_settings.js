@@ -1,5 +1,6 @@
 class SunSettings {
-    constructor(location, rotationSpeed, widthSegments = 30, heightSegments = 30) {
+    constructor(name, location, rotationSpeed, widthSegments = 30, heightSegments = 30) {
+        this.name = name;
         this.location = location;
         this.rotationSpeed = rotationSpeed;
         this.widthSegments = widthSegments;

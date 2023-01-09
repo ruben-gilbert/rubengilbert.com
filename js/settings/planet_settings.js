@@ -1,5 +1,6 @@
 class PlanetSettings {
-    constructor(orbitRadius, orbitOrigin, orbitSpeed, rotationSpeed, widthSegments = 30, heightSegments = 30) {
+    constructor(name, orbitRadius, orbitOrigin, orbitSpeed, rotationSpeed, widthSegments = 30, heightSegments = 30) {
+        this.name = name;
         this.orbitRadius = orbitRadius;
         this.orbitOrigin = orbitOrigin;
         this.orbitSpeed = orbitSpeed;
