@@ -25,10 +25,10 @@ function createSolarSystem(sunLocation = new Vector3(0, 0, 0)) {
 
     const textureLoader = new TextureLoader();
     // TODO: Get a sun texture downloaded or made!
-    const sunTexture = textureLoader.load('./assets/png/about.png');
-    const aboutTexture = textureLoader.load('./assets/png/about.png');
-    const linkedInTexture = textureLoader.load('./assets/png/linkedin.png');
-    const githubTexture = textureLoader.load('./assets/png/github.png');
+    const sunTexture = textureLoader.load('./assets/img/about.png');
+    const aboutTexture = textureLoader.load('./assets/img/about.png');
+    const linkedInTexture = textureLoader.load('./assets/img/linkedin.png');
+    const githubTexture = textureLoader.load('./assets/img/github.png');
 
     // Sun
     const sunSettings = new SunSettings(sunLocation, 0.001);
