@@ -1,4 +1,4 @@
-import { PerspectiveCamera, Vector3 } from "three";
+import { MathUtils, PerspectiveCamera, Vector3 } from "three";
 
 class TrackingCamera extends PerspectiveCamera {
     constructor(defaultLookAt, settings) {
@@ -30,8 +30,9 @@ class TrackingCamera extends PerspectiveCamera {
         }
 
         this.currentTrackedObj = obj;
-        this.trackDistance = this.currentTrackedObj.radius +
-            (this.currentTrackedObj.radius * 2) / (2 * Math.tan(this.fov * Math.PI / 360));
+        const verticalFitDistance = (this.currentTrackedObj.radius * 2) / (2 * Math.tan(MathUtils.degToRad(this.fov / 2)));
+        this.trackDistance = this.currentTrackedObj.radius + verticalFitDistance;
+
     }
 
     reset() {
