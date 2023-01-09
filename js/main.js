@@ -69,13 +69,10 @@ function main() {
     const raycaster = new Raycaster();
     const mouse = new Vector2();
 
-    // TODO: Get skybox working...
     const scene = new Scene();
-    // const cubeLoader = new THREE.CubeTextureLoader()
-    // cubeLoader.setPath('../assets/png/')
-    // const starTexture = cubeLoader.load(['stars.png', 'stars.png', 'stars.png', 'stars.png', 'stars.png', 'stars.png']);
-    // starTexture.minFilter = THREE.NearestFilter;
-    // scene.background = starTexture;
+    const bgLoader = new TextureLoader();
+    const bgTexture = bgLoader.load("./assets/img/stars.jpg");
+    scene.background = bgTexture;
 
     const lights = [];
     const pointLight = new PointLight(0xFFFFFF, 1.5);
