@@ -166,8 +166,9 @@ function main() {
 
         camera.update();
 
-        const hovered = checkForMouseIntersection(system.allBodies);
-        if (hovered != null && hovered instanceof Planet) {
+        // Only show hover border if we aren't tracking something.
+        const hovered = camera.currentTrackedObj == null ? checkForMouseIntersection(system.allBodies) : null;
+        if (hovered != null) {
             outlinePass.selectedObjects = [hovered];
         } else {
             outlinePass.selectedObjects = [];
