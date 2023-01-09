@@ -1,5 +1,6 @@
 import {
     AmbientLight,
+    MathUtils,
     PointLight,
     Raycaster,
     Scene,
@@ -148,10 +149,20 @@ function main() {
     }
 
     // RENDERING
-
+    const TARGET_VFOV = 45;
+    const TARGET_ASPECT_RATIO = 16 / 9;
     function render() {
         if (resizeRendererToDisplaySize(renderer)) {
             camera.aspect = canvas.clientWidth / canvas.clientHeight;
+            if (camera.aspect > TARGET_ASPECT_RATIO) {
+                const height = Math.tan(MathUtils.degToRad(TARGET_VFOV / 2));
+                const ratio = camera.aspect / TARGET_ASPECT_RATIO;
+                const adjustedCameraHeight = height / ratio;
+                const adjustedFov = MathUtils.radToDeg(Math.atan(adjustedCameraHeight)) * 2;
+                camera.fov = adjustedFov;
+            } else {
+                camera.fov = TARGET_VFOV;
+            }
             camera.updateProjectionMatrix();
         }
 
