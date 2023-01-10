@@ -25,10 +25,10 @@ function createSolarSystem(sunLocation = new Vector3(0, 0, 0)) {
     const planets = [];
 
     const textureLoader = new TextureLoader();
-    // TODO: Get a sun texture downloaded or made!
     const sunTexture = textureLoader.load('./assets/img/help.png');
     const aboutTexture = textureLoader.load('./assets/img/aboutme.png');
     const linkedInTexture = textureLoader.load('./assets/img/linkedin.png');
+    const resumeTexture = textureLoader.load('./assets/img/resume.png');
     const githubTexture = textureLoader.load('./assets/img/github.png');
 
     // Sun / Help
@@ -45,13 +45,17 @@ function createSolarSystem(sunLocation = new Vector3(0, 0, 0)) {
     const linkedInPlanet = new Planet(4, linkedInTexture, linkedInSettings);
     planets.push(linkedInPlanet);
 
+    // Resume
+    const resumeSettings = new PlanetSettings("Resume", 70, sunLocation, 0.0003, 0.012);
+    const resumePlanet = new Planet(4.5, resumeTexture, resumeSettings);
+    planets.push(resumePlanet);
+
     // Github
     const githubSettings = new PlanetSettings("GitHub", 120, sunLocation, 0.0003, 0.01);
     const githubPlanet = new Planet(5.5, githubTexture, githubSettings);
     planets.push(githubPlanet);
 
     // TODO: Projects separate from github?
-    // TODO: "Adobe" planet for resume?
 
     return {
         sun: sun,
