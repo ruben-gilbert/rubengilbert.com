@@ -124,6 +124,18 @@ function main() {
         }
     }
 
+    function updateDescription() {
+        const descriptionDiv = document.getElementsByClassName("description")[0];
+        if (camera.currentTrackedObj == null) {
+            descriptionDiv.classList.remove("show");
+            descriptionDiv.classList.add("hide");
+        } else {
+            // TODO: Add the content for the respective "planet"...
+            descriptionDiv.classList.add("show");
+            descriptionDiv.classList.remove("hide");
+        }
+    }
+
     // EVENT HANDLING
 
     function onMouseMove(event) {
@@ -137,16 +149,20 @@ function main() {
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
+        let trackingChange = false;
         const clickedObject = checkForMouseIntersection(system.allBodies);
         if (clickedObject != null) {
-            camera.track(clickedObject);
+            trackingChange = camera.track(clickedObject);
             system.orbits.forEach(orbit => { orbit.visible = false; });
         } else {
-            camera.reset();
+            trackingChange = camera.reset();
             system.orbits.forEach(orbit => { orbit.visible = true; });
         }
 
-        updateLocationName();
+        if (trackingChange) {
+            updateLocationName();
+            updateDescription();
+        }
     }
 
     function checkForMouseIntersection(objects) {
