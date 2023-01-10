@@ -36,17 +36,17 @@ function createSolarSystem(sunLocation = new Vector3(0, 0, 0)) {
     const sun = new Sun(15, sunTexture, sunSettings);
 
     // About Me
-    const aboutSettings = new PlanetSettings("About Me", 20, sunLocation, 0.003, 0.03);
-    const aboutPlanet = new Planet(3, aboutTexture, aboutSettings);
+    const aboutSettings = new PlanetSettings("About Me", 30, sunLocation, 0.001, 0.03);
+    const aboutPlanet = new Planet(2, aboutTexture, aboutSettings);
     planets.push(aboutPlanet);
 
     // LinkedIn
-    const linkedInSettings = new PlanetSettings("LinkedIn", 30, sunLocation, 0.002, 0.02);
-    const linkedInPlanet = new Planet(5, linkedInTexture, linkedInSettings);
+    const linkedInSettings = new PlanetSettings("LinkedIn", 45, sunLocation, 0.0005, 0.015);
+    const linkedInPlanet = new Planet(4, linkedInTexture, linkedInSettings);
     planets.push(linkedInPlanet);
 
     // Github
-    const githubSettings = new PlanetSettings("GitHub", 50, sunLocation, 0.001, 0.01);
+    const githubSettings = new PlanetSettings("GitHub", 120, sunLocation, 0.0003, 0.01);
     const githubPlanet = new Planet(5.5, githubTexture, githubSettings);
     planets.push(githubPlanet);
 
@@ -88,7 +88,7 @@ function main() {
     system.orbits.forEach(orbit => { scene.add(orbit); });
 
     const cameraSettings = new CameraSettings(
-        45,
+        70,
         window.innerWidth / window.innerHeight,
         0.1,
         1000,
@@ -157,7 +157,7 @@ function main() {
     }
 
     // RENDERING
-    const TARGET_VFOV = 45;
+    const TARGET_VFOV = 70;
     const TARGET_ASPECT_RATIO = 16 / 9;
     function render() {
         if (resizeRendererToDisplaySize(renderer)) {
