@@ -4,18 +4,8 @@ body {
     height: 100%;
 }
 
-@font-face {
-    font-family: "Oxanium-SemiBold";
-    src: url("fonts/Oxanium-SemiBold.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
 }
 
-@font-face {
-    font-family: "Oxanium-Regular";
-    src: url("fonts/Oxanium-Regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
 canvas {
     display: block;
     width: 100%;
@@ -30,6 +20,7 @@ canvas {
     color: white;
     top: 10%;
     left: 10%;
-    font-family: "Oxanium-SemiBold";
+    font-family: "Oxanium";
+    font-weight: 600;
     font-size: 5vmin;
 }
