@@ -24,3 +24,59 @@ canvas {
     font-weight: 600;
     font-size: 5vmin;
 }
+
+.container {
+    position: absolute;
+    background: transparent;
+    top: 20%;
+    bottom: 20%;
+    left: 60%;
+    right: 5%;
+}
+
+.description {
+    position: absolute;
+    z-index: 2;
+    background-color: #0d2643;
+    color: white;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    font-family: "Oxanium";
+    font-weight: 400;
+    font-size: 1em;
+    overflow-y: scroll;
+    opacity: 0;
+}
+
+.show {
+    opacity: 0.7;
+    animation: expand 2s forwards;
+}
+
+.hide {
+    opacity: 0.7;
+    animation: close 1s forwards;
+}
+
+@keyframes expand {
+    0% {
+        /* top-left, top-right, bottom-right, bottom-left */
+        clip-path: polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%);
+    }
+
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+}
+
+@keyframes close {
+    0% {
+        /* top-left, top-right, bottom-right, bottom-left */
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    100% {
+        clip-path: polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%);
+    }
+}
