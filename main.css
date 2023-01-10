@@ -45,7 +45,7 @@ canvas {
     font-family: "Oxanium";
     font-weight: 400;
     font-size: 1em;
-    overflow-y: scroll;
+    overflow-y: auto;
     opacity: 0;
 }
 
