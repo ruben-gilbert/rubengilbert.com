@@ -22,7 +22,7 @@ class Planet extends Mesh {
         this.orbitObj.add(this);
 
         const orbitGeometry = new RingGeometry(this.settings.orbitRadius - 0.5, this.settings.orbitRadius, 70);
-        const orbitMaterial = new MeshBasicMaterial({ color: 0x14186 });
+        const orbitMaterial = new MeshBasicMaterial({ color: 0x0657d1 });
         orbitMaterial.side = DoubleSide;
         this.orbitPath = new Mesh(orbitGeometry, orbitMaterial);
         this.orbitPath.quaternion.copy(this.orbitObj.quaternion);
