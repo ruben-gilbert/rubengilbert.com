@@ -24,23 +24,30 @@ class TrackingCamera extends PerspectiveCamera {
         this.lookAt(this.defaultLookAt);
     }
 
+    // Return true if we started tracking a new object, false otherwise.
     track(obj) {
         if (this.currentTrackedObj != null) {
-            return;
+            return false;
         }
 
         this.currentTrackedObj = obj;
         const verticalFitDistance = (this.currentTrackedObj.radius * 2) / (2 * Math.tan(MathUtils.degToRad(this.fov / 2)));
         this.trackDistance = this.currentTrackedObj.radius + verticalFitDistance;
-
+        return true;
     }
 
+    // Return true if a reset actually had to happen, false otherwise.
     reset() {
+        if (this.currentTrackedObj == null) {
+            return false;
+        }
+
         this.targetPosition = this.settings.initialPosition;
         this.currentTrackedObj = null;
         this.trackDistance = 0;
         this.tracker.position.set(...this.targetPosition);
         this.tracker.lookAt(this.defaultLookAt);
+        return true;
     }
 
     update() {
