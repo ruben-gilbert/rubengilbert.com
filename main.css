@@ -17,7 +17,7 @@ canvas {
     background: transparent;
 }
 
-.uiElement {
+.panel {
     position: relative;
     z-index: 2;
     background-color: #0d2643;
@@ -64,6 +64,7 @@ canvas {
 .description {
     font-size: 1.5em;
     opacity: 0;
+    pointer-events: none;
 }
 
 .instructions p,
@@ -84,7 +85,6 @@ canvas {
 }
 
 .hideHorizontal {
-    /* animation: opacityOnToOff 0.1s 3s forwards, closeHorizontal 2s 1s forwards; */
     animation: opacityOff 1s 1s backwards, closeHorizontal 1s forwards;
 }
 
