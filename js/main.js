@@ -104,16 +104,27 @@ async function main() {
         }
     }
 
+    function updateSimpleOverlay() {
+        const simpleDiv = document.getElementsByClassName("instructions")[0];
+        if (camera.currentTrackedObj == null) {
+            simpleDiv.classList.remove("hideHorizontal");
+            simpleDiv.classList.add("showHorizontal");
+        } else {
+            simpleDiv.classList.add("hideHorizontal");
+            simpleDiv.classList.remove("showHorizontal");
+        }
+    }
+
     function updateDescription() {
         const descriptionDiv = document.getElementsByClassName("description")[0];
         if (camera.currentTrackedObj == null) {
-            descriptionDiv.classList.remove("show");
-            descriptionDiv.classList.add("hide");
+            descriptionDiv.classList.remove("showVertical");
+            descriptionDiv.classList.add("hideVertical");
             descriptionDiv.innerHTML = "";
         } else {
             descriptionDiv.innerHTML = camera.currentTrackedObj.description;
-            descriptionDiv.classList.add("show");
-            descriptionDiv.classList.remove("hide");
+            descriptionDiv.classList.add("showVertical");
+            descriptionDiv.classList.remove("hideVertical");
         }
     }
 
@@ -142,6 +153,7 @@ async function main() {
 
         if (trackingChange) {
             updateLocationName();
+            updateSimpleOverlay();
             updateDescription();
         }
     }

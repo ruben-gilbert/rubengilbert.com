@@ -4,8 +4,6 @@ body {
     height: 100%;
 }
 
-}
-
 canvas {
     display: block;
     width: 100%;
@@ -14,6 +12,25 @@ canvas {
     z-index: 1;
 }
 
+.container {
+    position: absolute;
+    background: transparent;
+}
+
+.uiElement {
+    position: relative;
+    z-index: 2;
+    background-color: #0d2643;
+    color: white;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    font-family: "Oxanium";
+    font-weight: 400;
+    overflow: auto;
+}
+
+/* TODO: Convert to consistent container structure.... */
 .locationOverlay {
     position: absolute;
     z-index: 2;
@@ -25,41 +42,74 @@ canvas {
     font-size: 5vmin;
 }
 
-.container {
-    position: absolute;
-    background: transparent;
+.instructionsBox {
+    top: 10%;
+    left: 35%;
+    right: 35%;
+    bottom: 80%;
+}
+
+.descriptionBox {
     top: 20%;
     bottom: 20%;
     left: 60%;
     right: 5%;
 }
 
-.description {
-    position: absolute;
-    z-index: 2;
-    background-color: #0d2643;
-    color: white;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    font-family: "Oxanium";
-    font-weight: 400;
+.instructions {
     font-size: 1em;
-    overflow-y: auto;
     opacity: 0;
 }
 
-.show {
-    opacity: 0.7;
-    animation: expand 2s forwards;
+.description {
+    font-size: 1.5em;
+    opacity: 0;
 }
 
-.hide {
-    opacity: 0.7;
-    animation: close 1s forwards;
+.instructions p,
+.description p {
+    margin-inline: 5% 5%;
 }
 
-@keyframes expand {
+.showVertical {
+    animation: opacityOn 0.1s forwards, expandVertical 2s forwards;
+}
+
+.hideVertical {
+    animation: opacityOff 1s 1s backwards, closeVertical 1s forwards;
+}
+
+.showHorizontal {
+    animation: opacityOn 0.1s 1s forwards, expandHorizontal 2s 1s forwards;
+}
+
+.hideHorizontal {
+    /* animation: opacityOnToOff 0.1s 3s forwards, closeHorizontal 2s 1s forwards; */
+    animation: opacityOff 1s 1s backwards, closeHorizontal 1s forwards;
+}
+
+
+@keyframes opacityOn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes opacityOff {
+    0% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes expandVertical {
     0% {
         /* top-left, top-right, bottom-right, bottom-left */
         clip-path: polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%);
@@ -70,7 +120,7 @@ canvas {
     }
 }
 
-@keyframes close {
+@keyframes closeVertical {
     0% {
         /* top-left, top-right, bottom-right, bottom-left */
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
@@ -78,5 +128,28 @@ canvas {
 
     100% {
         clip-path: polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%);
+    }
+}
+
+@keyframes expandHorizontal {
+    0% {
+        /* top-left, top-right, bottom-right, bottom-left */
+        clip-path: polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%);
+    }
+
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+}
+
+@keyframes closeHorizontal {
+    0% {
+        /* top-left, top-right, bottom-right, bottom-left */
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+
+    }
+
+    100% {
+        clip-path: polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%);
     }
 }

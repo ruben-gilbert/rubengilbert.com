@@ -28,10 +28,21 @@
 </head>
 
 <body>
-  <canvas id="mainCanvas"></canvas>
+  <canvas id="mainCanvas">
+    <p>This site uses WebGL and requires JavaScript to be enabled to function properly.</p>
+    <p>If you do not wish to enable JavaScript or are otherwise having trouble viewing this page,
+      consider visiting <a href="./simple.html">the Simple version of my site</a>!
+    </p>
+  </canvas>
   <div class="locationOverlay"></div>
-  <div class="container">
-    <div class="description"></div>
+  <div class="container instructionsBox">
+    <div class="instructions uiElement showHorizontal">
+      <p>Select a planet to land and learn more!</p>
+      <p>For a simple (non-WebGL) version of this site, click <a href="./simple.html">here</a>.</p>
+    </div>
+  </div>
+  <div class="container descriptionBox">
+    <div class="description uiElement"></div>
   </div>
 </body>
 
