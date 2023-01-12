@@ -21,52 +21,38 @@ import { CameraSettings } from './settings/camera_settings.js';
 import { PlanetSettings } from './settings/planet_settings.js';
 import { SunSettings } from './settings/sun_settings.js';
 
-function createSolarSystem(sunLocation = new Vector3(0, 0, 0)) {
+async function createSolarSystem(config) {
     const planets = [];
-
+    const orbits = [];
     const textureLoader = new TextureLoader();
-    const sunTexture = textureLoader.load('./assets/img/help.png');
-    const aboutTexture = textureLoader.load('./assets/img/aboutme.png');
-    const linkedInTexture = textureLoader.load('./assets/img/linkedin.png');
-    const resumeTexture = textureLoader.load('./assets/img/resume.png');
-    const githubTexture = textureLoader.load('./assets/img/github.png');
 
-    // Sun / Help
-    const sunSettings = new SunSettings("Help", sunLocation, 0.001);
-    const sun = new Sun(15, sunTexture, sunSettings);
+    const sunTexture = textureLoader.load(config.sun.texturePath);
+    const sunSettings = SunSettings.fromJson(config.sun.settings);
+    const sun = await Sun.create(sunTexture, sunSettings);
 
-    // About Me
-    const aboutSettings = new PlanetSettings("About Me", 30, sunLocation, 0.001, 0.03);
-    const aboutPlanet = new Planet(2, aboutTexture, aboutSettings);
-    planets.push(aboutPlanet);
-
-    // LinkedIn
-    const linkedInSettings = new PlanetSettings("LinkedIn", 45, sunLocation, 0.0005, 0.015);
-    const linkedInPlanet = new Planet(4, linkedInTexture, linkedInSettings);
-    planets.push(linkedInPlanet);
-
-    // Resume
-    const resumeSettings = new PlanetSettings("Resume", 70, sunLocation, 0.0003, 0.012);
-    const resumePlanet = new Planet(4.5, resumeTexture, resumeSettings);
-    planets.push(resumePlanet);
-
-    // Github
-    const githubSettings = new PlanetSettings("GitHub", 120, sunLocation, 0.0003, 0.01);
-    const githubPlanet = new Planet(5.5, githubTexture, githubSettings);
-    planets.push(githubPlanet);
-
-    // TODO: Projects separate from github?
+    for await (const planetConf of config.planets) {
+        // Runtime patch the settings to orbit around wherever the Sun is.  Unlikely to ever need
+        // planets orbiting something that is NOT the sun, but support it anyway :^).
+        if (planetConf.orbitOrigin === undefined) {
+            planetConf.settings.orbitOrigin = config.sun.settings.location;
+        }
+        const texture = textureLoader.load(planetConf.texturePath);
+        const settings = PlanetSettings.fromJson(planetConf.settings);
+        const planet = await Planet.create(texture, settings);
+        planets.push(planet);
+        orbits.push(planet.orbitPath);
+    };
 
     return {
         sun: sun,
         planets: planets,
         allBodies: [sun].concat(planets),
-        orbits: planets.map(planet => planet.orbitPath)
+        orbits: orbits
     };
 }
 
 // TODO: Refactor much of this into its own class...
-function main() {
+async function main() {
     const canvas = document.querySelector('#mainCanvas');
     canvas.addEventListener('mousemove', onMouseMove);
     canvas.addEventListener('click', onMouseClick);
@@ -86,20 +72,14 @@ function main() {
     lights.push(ambientLight);
     lights.forEach(l => { scene.add(l); });
 
-    const system = createSolarSystem();
+    const config = await fetch("../config/default.json")
+        .then(response => response.json());
+    const system = await createSolarSystem(config);
     scene.add(system.sun);
     system.planets.forEach(planet => { scene.add(planet.orbitObj); });
     system.orbits.forEach(orbit => { scene.add(orbit); });
 
-    const cameraSettings = new CameraSettings(
-        70,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000,
-        new Vector3(0, 100, 200),
-        0.02,
-        0.03,
-    );
+    const cameraSettings = CameraSettings.fromJson(config.camera);
     const camera = new TrackingCamera(system.sun.getWorldPosition(new Vector3()), cameraSettings);
     updateLocationName();
 
@@ -129,8 +109,9 @@ function main() {
         if (camera.currentTrackedObj == null) {
             descriptionDiv.classList.remove("show");
             descriptionDiv.classList.add("hide");
+            descriptionDiv.innerHTML = "";
         } else {
-            // TODO: Add the content for the respective "planet"...
+            descriptionDiv.innerHTML = camera.currentTrackedObj.description;
             descriptionDiv.classList.add("show");
             descriptionDiv.classList.remove("hide");
         }
@@ -228,4 +209,4 @@ function main() {
     requestAnimationFrame(render);
 }
 
-main();
+await main();

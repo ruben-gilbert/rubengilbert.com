@@ -1,0 +1,75 @@
+{
+    "camera": {
+        "targetFov": 70,
+        "targetAspect": 1.77777777778,
+        "near": 0.1,
+        "far": 1000,
+        "initialPosition": [
+            0,
+            100,
+            200
+        ],
+        "lerpSpeed": 0.02,
+        "slerpSpeed": 0.03
+    },
+    "sun": {
+        "settings": {
+            "name": "Help",
+            "htmlPath": "./assets/html/help.html",
+            "radius": 15,
+            "rotationSpeed": 0.001,
+            "location": [
+                0,
+                0,
+                0
+            ]
+        },
+        "texturePath": "./assets/img/help.png"
+    },
+    "planets": [
+        {
+            "settings": {
+                "name": "About Me",
+                "htmlPath": "./assets/html/aboutme.html",
+                "radius": 2,
+                "orbitRadius": 30,
+                "orbitSpeed": 0.001,
+                "rotationSpeed": 0.03
+            },
+            "texturePath": "./assets/img/aboutme.png"
+        },
+        {
+            "settings": {
+                "name": "LinkedIn",
+                "htmlPath": "./assets/html/linkedin.html",
+                "radius": 4,
+                "orbitRadius": 45,
+                "orbitSpeed": 0.0005,
+                "rotationSpeed": 0.015
+            },
+            "texturePath": "./assets/img/linkedin.png"
+        },
+        {
+            "settings": {
+                "name": "Resume",
+                "htmlPath": "./assets/html/resume.html",
+                "radius": 4.5,
+                "orbitRadius": 70,
+                "orbitSpeed": 0.0003,
+                "rotationSpeed": 0.012
+            },
+            "texturePath": "./assets/img/resume.png"
+        },
+        {
+            "settings": {
+                "name": "GitHub",
+                "htmlPath": "./assets/html/github.html",
+                "radius": 5.5,
+                "orbitRadius": 120,
+                "orbitSpeed": 0.0003,
+                "rotationSpeed": 0.01
+            },
+            "texturePath": "./assets/img/github.png"
+        }
+    ]
+}
