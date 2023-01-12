@@ -98,7 +98,7 @@ async function main() {
     function updateLocationName() {
         const locationDiv = document.getElementsByClassName("locationOverlay")[0];
         if (camera.currentTrackedObj == null) {
-            locationDiv.innerHTML = "Ruben<br>Gilbert";
+            locationDiv.innerHTML = config.systemName;
         } else {
             locationDiv.innerHTML = `${camera.currentTrackedObj.name}`
         }
