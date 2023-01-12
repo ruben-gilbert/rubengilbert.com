@@ -158,19 +158,18 @@ async function main() {
     }
 
     // RENDERING
-    const TARGET_VFOV = 70;
-    const TARGET_ASPECT_RATIO = 16 / 9;
+
     function render() {
         if (resizeRendererToDisplaySize(renderer)) {
             camera.aspect = canvas.clientWidth / canvas.clientHeight;
-            if (camera.aspect > TARGET_ASPECT_RATIO) {
-                const height = Math.tan(MathUtils.degToRad(TARGET_VFOV / 2));
-                const ratio = camera.aspect / TARGET_ASPECT_RATIO;
+            if (camera.aspect > camera.settings.targetAspect) {
+                const height = Math.tan(MathUtils.degToRad(camera.settings.targetFov / 2));
+                const ratio = camera.aspect / camera.settings.targetAspect;
                 const adjustedCameraHeight = height / ratio;
                 const adjustedFov = MathUtils.radToDeg(Math.atan(adjustedCameraHeight)) * 2;
                 camera.fov = adjustedFov;
             } else {
-                camera.fov = TARGET_VFOV;
+                camera.fov = camera.settings.targetFov;
             }
             camera.updateProjectionMatrix();
         }

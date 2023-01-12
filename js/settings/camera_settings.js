@@ -1,9 +1,9 @@
 import { Vector3 } from "three";
 
 class CameraSettings {
-    constructor(fov, aspect, near, far, position, lerpSpeed, slerpSpeed) {
-        this.fov = fov;
-        this.aspect = aspect;
+    constructor(targetFov, targetAspect, near, far, position, lerpSpeed, slerpSpeed) {
+        this.targetFov = targetFov;
+        this.targetAspect = targetAspect;
         this.near = near;
         this.far = far;
         this.initialPosition = position;

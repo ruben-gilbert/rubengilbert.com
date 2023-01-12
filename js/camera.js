@@ -2,7 +2,7 @@ import { MathUtils, PerspectiveCamera, Vector3 } from "three";
 
 class TrackingCamera extends PerspectiveCamera {
     constructor(defaultLookAt, settings) {
-        super(settings.fov, settings.aspect, settings.near, settings.far);
+        super(settings.targetFov, settings.targetAspect, settings.near, settings.far);
         this.settings = settings;
 
         this.position.set(...settings.initialPosition);
@@ -14,8 +14,8 @@ class TrackingCamera extends PerspectiveCamera {
         this.trackDistance = 0;
 
         this.tracker = new PerspectiveCamera(
-            this.settings.fov,
-            this.settings.aspect,
+            this.settings.targetFov,
+            this.settings.targetAspect,
             this.settings.near,
             this.settings.far
         );
