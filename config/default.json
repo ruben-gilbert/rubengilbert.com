@@ -30,14 +30,14 @@
     "planets": [
         {
             "settings": {
-                "name": "About Me",
-                "htmlPath": "./assets/html/aboutme.html",
-                "radius": 2,
+                "name": "GitHub",
+                "htmlPath": "./assets/html/github.html",
+                "radius": 3,
                 "orbitRadius": 30,
                 "orbitSpeed": 0.001,
-                "rotationSpeed": 0.03
+                "rotationSpeed": 0.01
             },
-            "texturePath": "./assets/img/aboutme.png"
+            "texturePath": "./assets/img/github.png"
         },
         {
             "settings": {
@@ -46,7 +46,7 @@
                 "radius": 4,
                 "orbitRadius": 45,
                 "orbitSpeed": 0.0005,
-                "rotationSpeed": 0.015
+                "rotationSpeed": 0.005
             },
             "texturePath": "./assets/img/linkedin.png"
         },
@@ -57,20 +57,20 @@
                 "radius": 4.5,
                 "orbitRadius": 70,
                 "orbitSpeed": 0.0003,
-                "rotationSpeed": 0.012
+                "rotationSpeed": 0.002
             },
             "texturePath": "./assets/img/resume.png"
         },
         {
             "settings": {
-                "name": "GitHub",
-                "htmlPath": "./assets/html/github.html",
+                "name": "About Me",
+                "htmlPath": "./assets/html/aboutme.html",
                 "radius": 5.5,
                 "orbitRadius": 120,
-                "orbitSpeed": 0.0003,
-                "rotationSpeed": 0.01
+                "orbitSpeed": 0.0001,
+                "rotationSpeed": 0.0015
             },
-            "texturePath": "./assets/img/github.png"
+            "texturePath": "./assets/img/aboutme.png"
         }
     ]
 }
