@@ -120,11 +120,13 @@ async function main() {
         if (camera.currentTrackedObj == null) {
             descriptionDiv.classList.remove("showVertical");
             descriptionDiv.classList.add("hideVertical");
+            descriptionDiv.classList.add("unclickable");
             descriptionDiv.innerHTML = "";
         } else {
             descriptionDiv.innerHTML = camera.currentTrackedObj.description;
             descriptionDiv.classList.add("showVertical");
             descriptionDiv.classList.remove("hideVertical");
+            descriptionDiv.classList.remove("unclickable");
         }
     }
 

@@ -64,12 +64,15 @@ canvas {
 .description {
     font-size: 1.5em;
     opacity: 0;
-    pointer-events: none;
 }
 
 .instructions p,
 .description p {
     margin-inline: 5% 5%;
+}
+
+.unclickable {
+    pointer-events: none;
 }
 
 .showVertical {
