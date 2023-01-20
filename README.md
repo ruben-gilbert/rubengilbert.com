@@ -1,2 +1,5 @@
 # rubengilbert.com
-My personal website source.
+
+A Mass Effect-inspired WebGL mini-game that acts as my personal website.
+
+![website_preview.png](./docs/website_preview.png)
