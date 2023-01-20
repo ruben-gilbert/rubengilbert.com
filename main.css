@@ -12,6 +12,22 @@ canvas {
     z-index: 1;
 }
 
+a:link {
+    color: #126C15;
+}
+
+a:visited {
+    color: #0D5010;
+}
+
+a:hover {
+    color: #199A1E;
+}
+
+a:active {
+    color: white;
+}
+
 .container {
     position: absolute;
     background: transparent;
