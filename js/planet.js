@@ -17,7 +17,7 @@ class Planet extends Mesh {
         const z = Math.sin(randAngle) * this.settings.orbitRadius;
         this.position.set(x, 0, z);
 
-        // TODO: Support orbits on altered planes...?  (i.e. rotate the orbitObj X oy Z)
+        // TODO: Support orbits on altered planes...?  (i.e. rotate the orbitObj X or Z)
         this.orbitObj = new Object3D();
         this.orbitObj.position.set(...this.settings.orbitOrigin);
         this.orbitObj.add(this);
