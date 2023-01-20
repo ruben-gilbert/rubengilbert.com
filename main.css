@@ -46,7 +46,8 @@ canvas {
     top: 10%;
     left: 35%;
     right: 35%;
-    bottom: 80%;
+    /* TODO: Cap the bottom nicely somehow without tons of empty space */
+    /* bottom: 80%; */
 }
 
 .descriptionBox {
