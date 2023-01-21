@@ -20,3 +20,5 @@ jobs:
           known_hosts: 'placeholder-to-avoid-errors'
       - name: Add Known Host
         run: ssh-keyscan -H ${{ secrets.DEPLOY_SERVER }} >> ~/.ssh/known_hosts
+      - name: Deploy to Server
+        run: sshpass -p ${{ secrets.DEPLOY_PASSWORD }} rsync -aP . ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}:${{ secrets.DEPLOY_PATH }} --port=${{ secrets.DEPLOY_PORT }} --exclude=.git --exclude=.github --exclude=.gitignore --exclude=.vscode --exclude=LICENSE --exclude=README*
