@@ -18,7 +18,7 @@
             "name": "Help",
             "htmlPath": "./assets/html/help.html",
             "radius": 15,
-            "rotationSpeed": 0.001,
+            "rotationSpeed": 0.003,
             "location": [
                 0,
                 0,
@@ -32,7 +32,7 @@
             "settings": {
                 "name": "GitHub",
                 "htmlPath": "./assets/html/github.html",
-                "radius": 3,
+                "radius": 4,
                 "orbitRadius": 30,
                 "orbitSpeed": 0.001,
                 "rotationSpeed": 0.01
@@ -43,7 +43,7 @@
             "settings": {
                 "name": "LinkedIn",
                 "htmlPath": "./assets/html/linkedin.html",
-                "radius": 4,
+                "radius": 5,
                 "orbitRadius": 45,
                 "orbitSpeed": 0.0005,
                 "rotationSpeed": 0.005
@@ -54,10 +54,10 @@
             "settings": {
                 "name": "Resume",
                 "htmlPath": "./assets/html/resume.html",
-                "radius": 4.5,
+                "radius": 5.5,
                 "orbitRadius": 70,
                 "orbitSpeed": 0.0003,
-                "rotationSpeed": 0.002
+                "rotationSpeed": 0.004
             },
             "texturePath": "./assets/img/resume.png"
         },
@@ -65,10 +65,10 @@
             "settings": {
                 "name": "About Me",
                 "htmlPath": "./assets/html/aboutme.html",
-                "radius": 5.5,
+                "radius": 6.5,
                 "orbitRadius": 120,
                 "orbitSpeed": 0.0001,
-                "rotationSpeed": 0.0015
+                "rotationSpeed": 0.003
             },
             "texturePath": "./assets/img/aboutme.png"
         }
